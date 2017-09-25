@@ -12,10 +12,12 @@ require(['vs/editor/editor.main'], function () {
     });
 });
 
-var spinner = '<svg class="spinner pull-right" width="65px" height="65px" viewBox="0 0 66 66" ' +
-    'xmlns="http://www.w3.org/2000/svg" style="height: 3%;">' +
+var spinner = '<svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" ' +
+    'xmlns="http://www.w3.org/2000/svg"  >' +
     '<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33"' +
     ' r="30"></circle> </svg>';
+   
+  
 
 $(document).ready(function () {
     $("#inputFile").change(onChange);
@@ -136,7 +138,8 @@ function reload() {
     document.getElementById("notfound").setAttribute("hidden", true);
     var iframe = document.getElementById('iframe');
     document.getElementById("iframeWrapper").removeAttribute("hidden");
-
+    document.getElementById("fullscreen").removeAttribute("disabled");
+    document.getElementById("fullscreen").setAttribute("href", iframeHref + "?name=" + Date.now());
     iframe.removeAttribute("hidden");
     var download = document.getElementById("download");
     download.removeAttribute("hidden");
