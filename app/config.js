@@ -1,2 +1,2 @@
-var iframeHref = "http://localhost:8080";
-var host = 'http://localhost:4567/';
+var iframeHref = "http://35.198.251.53:8080";
+var host = 'http://35.198.251.53/';
