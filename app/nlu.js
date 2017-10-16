@@ -1,9 +1,22 @@
 angular.module('nlu', [])
-    .controller('MainController', ($http, $scope) => {
+    .controller('MainController', ($http, $scope, $rootScope) => {
+
+        var socket;
+        var uuid;
+        socket = io(socket);
+        $rootScope.lines = "";
+        socket.on("VALUE", function (obj) {
+            console.log("socekt", obj);
+          
+            $rootScope.lines+= obj;
+            $("#log").append( "<br>" + obj.replace(/\s/g,"&nbsp;&nbsp;"));
+        });
 
         $scope.sampleText = "";
         $scope.loading = false;
         $scope.data;
+
+
         $scope.getData = function () {
             if ($scope.sampleText.split(" ").length < 20) {
                 swal(
@@ -16,11 +29,15 @@ angular.module('nlu', [])
             $scope.data = undefined;
             $scope.loading = true;
 
-            $http.post(nlu + "extract-entity", { text: $scope.sampleText })
+            uuid = Math.random();
+
+            $rootScope.lines = "";
+            $("#log").html("");
+            $http.post(nlu + "extract-entity", { text: $scope.sampleText, uuid: uuid })
                 .then((res) => {
                     $scope.data = res.data[0];
                     $scope.loading = false;
-                },()=>{
+                }, () => {
                     $scope.loading = false;
                     swal(
                         'Something went wrong',
@@ -41,4 +58,7 @@ angular.module('nlu', [])
                 return obj.category;
             }
         }
+
+
+
     })

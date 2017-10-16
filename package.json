@@ -11,6 +11,7 @@
   "dependencies": {
     "codeflask": "^0.2.0",
     "monaco-editor": "^0.10.0",
-    "prismjs": "^1.8.1"
+    "prismjs": "^1.8.1",
+    "socket.io": "^2.0.3"
   }
 }
