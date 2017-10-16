@@ -3,7 +3,7 @@ angular.module('nlu', [])
 
         var socket;
         var uuid;
-        socket = io(socket);
+        socket = io(sock);
         $rootScope.lines = "";
         socket.on("VALUE", function (obj) {
             console.log("socekt", obj);
