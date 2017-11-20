@@ -7,12 +7,13 @@ angular.module('nlu', [])
         $rootScope.lines = "";
         socket.on("VALUE", function (obj) {
             console.log("socekt", obj);
-          
-            $rootScope.lines+= obj;
-            $("#log").append( "<br>" + obj.replace(/\s/g,"&nbsp;&nbsp;"));
+
+            $rootScope.lines += obj;
+            $("#log").append("<br>" + obj.replace(/\s/g, "&nbsp;&nbsp;"));
         });
 
         $scope.sampleText = "";
+        $scope.mainEntity = "";
         $scope.loading = false;
         $scope.data;
 
@@ -33,7 +34,7 @@ angular.module('nlu', [])
 
             $rootScope.lines = "";
             $("#log").html("");
-            $http.post(nlu + "extract-entity", { text: $scope.sampleText, uuid: uuid })
+            $http.post(nlu + "extract-entity", { text: $scope.sampleText, entity: $scope.mainEntity })
                 .then((res) => {
                     $scope.data = res.data[0];
                     $scope.loading = false;

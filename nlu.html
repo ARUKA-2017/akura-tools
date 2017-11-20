@@ -70,6 +70,10 @@
                             <div class="card-block">
                                 <form class="form-horizontal">
                                     <div class="form-group">
+                                        <label class="control-label">MAIN ENTITY</label>
+                                        <input ng-model="mainEntity" class="form-control"   placeholder="Enter your Main entity here"> 
+                                    </div>
+                                    <div class="form-group">
                                         <label class="control-label">SAMPLE INPUT</label>
                                         <textarea ng-model="sampleText" class="form-control" rows="30" placeholder="Enter your RAW Text here"></textarea>
                                     </div>
@@ -181,19 +185,19 @@
         </div>
 
         <br>
-    
+
         <div class="row">
 
             <div class="col-md-12">
-           
+
                 <div class="card">
                     <div class="card-block">
-                            <h6>System Log</h6>
-                            <hr>
-                           
-                            <p style="    font-size: 85%;
+                        <h6>System Log</h6>
+                        <hr>
+
+                        <p style="    font-size: 85%;
                             color: grey;" id="log"></p>
-                     
+
                     </div>
                 </div>
             </div>

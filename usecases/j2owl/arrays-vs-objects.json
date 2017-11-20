@@ -1,26 +1,26 @@
 {
-  "objectArrayDef": {
-      "232323": {
-        "key1": "MainEntity",
-        "key2": "112121212121",
-        "key3": "11111111111111"
-      },
-      "124242423":{
-         "key1": "MainEntity",
-        "key2": "112121212121",
-        "key3": "11111111111111"
-      }
+  "adminStaff": {
+    "departmentHead": {
+      "name": "Steve Smith",
+      "email": "head@uni.com",
+      "contact": "000-11234356"
     },
-    "pureArrayDEf":[
-      {
-          "key4": "MainEntity",
-         "key5": "112121212121",
-         "key6": "11111111111111"
-       },
-       {
-          "key4": "MainEntity",
-         "key5": "112121212121",
-         "key6": "11111111111111"
-       }
-    ]
+    "marketingManager": {
+      "name": "Josh Burns",
+      "email": "manager@uni.com",
+      "contact": "111-11134356"
+    }
+  },
+  "lecturers": [
+    {
+      "name": "Joe Root",
+      "email": "root@uni.com",
+      "contact": "123-11234356"
+    },
+    {
+      "name": "Pat Cummins",
+      "email": "cummins@uni.com",
+      "contact": "222-11234356"
+    }
+  ]
 }
