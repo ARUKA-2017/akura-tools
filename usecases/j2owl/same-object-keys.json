@@ -1,16 +1,24 @@
 {
-    "person":{
-        "name" : "Person1 Name",
+    "person": {
+        "name": "Person1 Name",
         "age": "24",
-        "address":{
+        "address": {
             "street": "some street",
             "country": "LK"
         }
     },
-    "person2":{
-        "name" : "Person1 Name",
+    "person2": {
+        "name": "Person1 Name",
         "age": "24",
-        "address":{
+        "address": {
+            "street": "some street",
+            "country": "LK"
+        }
+    },
+    "person3": {
+        "name": "Person1 Name",
+        "age": "24",
+        "address": {
             "street": "some street",
             "country": "LK"
         }
