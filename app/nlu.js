@@ -1,16 +1,64 @@
-angular.module('nlu', [])
+angular.module('nlu', ['hljs'])
+.config(function (hljsServiceProvider) {
+    hljsServiceProvider.setOptions({tabReplace: '  '})
+  })
     .controller('MainController', ($http, $scope, $rootScope) => {
 
         var socket;
         var uuid;
         socket = io(sock);
         $rootScope.lines = "";
+        $scope.details = [];
         socket.on("VALUE", function (obj) {
-            console.log("socekt", obj);
+            // console.log("socekt", obj);
+            var tmp;
+            // check title
+            if(checkType(obj,'#TITLE-')){
+                tmp = checkType(obj,'#TITLE-');
+            } // check subtitle
+            else if(checkType(obj,'#SUB-')){
+                tmp = checkType(obj,'#SUB-');
 
-            $rootScope.lines += obj;
-            $("#log").append("<br>" + obj.replace(/\s/g, "&nbsp;&nbsp;"));
+            } // check desc
+            else if(checkType(obj,'#CONT-')){
+                tmp = checkType(obj,'#CONT-');
+                
+            } // check json
+            else if(checkType(obj,'#JSON-')){
+                tmp = checkType(obj,'#JSON-');
+                
+            }
+           
+            
+          
+
+
+
+
+            // $rootScope.lines += obj;
+            $scope.details = $scope.details.concat(tmp);
+            $scope.$apply();
+            // $("#log").append("<br>" + obj.replace(/\s/g, "&nbsp;&nbsp;"));
         });
+
+
+        function checkType(str,type){
+
+             var tmp = str.split(type);
+             if(tmp.length > 1){
+                 if(type == '#JSON-'){
+                    tmp[1] = JSON.stringify(getJSON(tmp[1]),null,'\t');
+                    console.log(tmp[1]);
+                 }
+                 return {
+                     arr: tmp,
+                     type:type
+                 };
+             }else{
+                 return false;
+             }
+
+        }
 
         $scope.sampleText = "";
         $scope.mainEntity = "";
@@ -33,7 +81,8 @@ angular.module('nlu', [])
             uuid = Math.random();
 
             $rootScope.lines = "";
-            $("#log").html("");
+            $scope.details = [];
+   
             $http.post(nlu + "extract-entity", { text: $scope.sampleText, entity: $scope.mainEntity })
                 .then((res) => {
                     $scope.data = res.data[0];
@@ -62,4 +111,17 @@ angular.module('nlu', [])
 
 
 
+       function getJSON(str){
+            var jsn = '';
+            try{
+                var tmp = JSON.parse(str);
+                jsn = tmp;
+                
+            }catch(e){
+                console.log("came to catch");
+                jsn = str;
+            }
+            console.log("JSON", jsn);
+            return jsn;
+        };
     })
