@@ -28,13 +28,6 @@ angular.module('nlu', ['hljs'])
                 tmp = checkType(obj,'#JSON-');
                 
             }
-           
-            
-          
-
-
-
-
             // $rootScope.lines += obj;
             $scope.details = $scope.details.concat(tmp);
             $scope.$apply();
@@ -85,7 +78,8 @@ angular.module('nlu', ['hljs'])
    
             $http.post(nlu + "extract-entity", { text: $scope.sampleText, entity: $scope.mainEntity })
                 .then((res) => {
-                    $scope.data = res.data[0];
+                    console.log(res.data);
+                    $scope.data = res.data.data[0];
                     $scope.loading = false;
                 }, () => {
                     $scope.loading = false;
@@ -96,7 +90,7 @@ angular.module('nlu', ['hljs'])
                     );
                     return;
                 });
-        }
+        };
 
 
         $scope.getCategory = function (obj) {
@@ -123,5 +117,5 @@ angular.module('nlu', ['hljs'])
             }
             console.log("JSON", jsn);
             return jsn;
-        };
+        }
     })

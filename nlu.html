@@ -65,7 +65,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -73,11 +73,11 @@
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="control-label">MAIN ENTITY</label>
-                                        <input ng-model="mainEntity" class="form-control" placeholder="Enter your Main entity here">
+                                        <input ng-model="mainEntity" class="form-control col-md-4" placeholder="Enter your Main entity here">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">SAMPLE INPUT</label>
-                                        <textarea ng-model="sampleText" class="form-control" rows="30" placeholder="Enter your RAW Text here"></textarea>
+                                        <textarea ng-model="sampleText" class="form-control" rows="10" placeholder="Enter your RAW Text here"></textarea>
                                     </div>
                                 </form>
                             </div>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8"></div>
+                    <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div ng-if="loading">
 
@@ -102,120 +102,213 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
 
-                            <div class="card-block">
-                                <h6> Overall Theme </h6>
-                                <br>
-                                <div ng-if="loading">
-
-                                    <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                                    </svg>
-
-                                </div>
-                                <table ng-if="data.categoryMap" class="table table-hover" style="border-top:none">
-                                    <tr ng-repeat="(key,x) in data.categoryMap">
-                                        <td> {{key}}</td>
-                                        <td style="width:120px">
-                                            <div class="progress">
-                                                <div class="progress-bar " ng-class="{'progress-bar-info': (x*100 >39) &&(x*100 <80),'progress-bar-danger': (x*100) < 40,
-                                                         'progress-bar-success': (x*100) > 79  }" role="progressbar" style="width: {{x * 100}}"
-                                                    aria-valuenow="{{x * 100}}" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td>{{(x*100)}}%</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h6> Entity List </h6>
-                                <br>
-                                <div ng-if="loading">
-
-                                    <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                                        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-                                    </svg>
-
-                                </div>
-
-                                <table ng-if="data.finalEntityTaggedList" class="table table-hover" style="border-top:none;font-size:100%">
-
-                                    <tr>
-                                        <td>
-                                            <h6>Entity</h6>
-                                        </td>
-                                        <td style="text-align: left;">
-                                            <h6>Category</h6>
-                                        </td>
-                                        <td>
-                                            <h6>Importance</h6>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr ng-repeat="x in data.finalEntityTaggedList">
-                                        <td> "{{x.text}}"</td>
-                                        <td>
-                                            <span class="label label-primary" style="    "> {{getCategory(x)}}</span>
-                                        </td>
-                                        <td style="width:80px; text-align: left;">
-                                            <div class="progress">
-                                                <div class="progress-bar " ng-class="{'progress-bar-info': (x.salience*100 >19) &&(x.salience*100 <80),'progress-bar-danger': (x.salience*100) < 20,
-                                                             'progress-bar-success': (x.salience*100) > 79  }" role="progressbar"
-                                                    style="width: {{x.salience * 100}}" aria-valuenow="{{x.salience * 100}}"
-                                                    aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td>{{x.salience*100 | currency:""}}%</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <br>
 
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-8">
 
                 <div class="card">
                     <div class="card-block">
-                        <!-- <h6>System Log</h6>
-                        <hr> -->
+                        <h6> Process Step By Step Demonstration </h6>
+                        <!-- <h6>System Log</h6> -->
+                        <hr>
 
                         <!-- <p style="    font-size: 85%;
                             color: grey;" id="log"> -->
 
 
                         <div ng-repeat="x in details">
-                            <h4 ng-if="x.type == '#TITLE-'"> {{x.arr[1]}} </h4>
-                            <h5 ng-if="x.type == '#SUB-'"> {{x.arr[1]}} </h5>
-                            <p ng-if="x.type == '#CONT-'"> {{x.arr[1]}} </p>
-                            <div ng-if="x.type == '#JSON-'" hljs hljs-source="x.arr[1]"> </div>
-                            <hr ng-if="x.type != '#SUB-'">
+                            <h5 ng-if="x.type == '#TITLE-'"> {{x.arr[1]}} </h5>
+                            <p ng-if="x.type == '#SUB-'"> {{x.arr[1]}} </hp>
+                                <p ng-if="x.type == '#CONT-'"> {{x.arr[1]}} </p>
+                                <div ng-if="x.type == '#JSON-'" hljs hljs-source="x.arr[1]"> </div>
+                                <hr ng-if="x.type != '#SUB-'">
                         </div>
-                        </p>
+                        <!-- </p> -->
+                        <div ng-if="loading">
 
+                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                            </svg>
+
+                        </div>
                     </div>
                 </div>
 
 
             </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-block">
+                                        <h6> Overall Theme </h6>
+                                        <hr>
+                                        <div ng-if="loading">
+
+                                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+
+                                        </div>
+                                        <table ng-if="data.categoryMap" class="table table-hover" style="border-top:none">
+                                            <tr ng-repeat="(key,x) in data.categoryMap">
+                                                <td> {{key}}</td>
+                                                <td style="width:120px">
+                                                    <div class="progress">
+                                                        <div class="progress-bar " ng-class="{'progress-bar-info': (x*100 >39) &&(x*100 <80),'progress-bar-danger': (x*100) < 40,
+                                                                         'progress-bar-success': (x*100) > 79  }" role="progressbar"
+                                                            style="width: {{x * 100}}" aria-valuenow="{{x * 100}}" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </td>
+                                                <td>{{(x*100)}}%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <h6> Entity List </h6>
+                                        <hr>
+                                        <div ng-if="loading">
+
+                                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+
+                                        </div>
+
+                                        <table ng-if="data.finalEntityTaggedList" class="table table-hover" style="border-top:none;font-size:100%">
+
+                                            <tr>
+                                                <td>
+                                                    <h6>Entity</h6>
+                                                </td>
+                                                <td style="text-align: left;">
+                                                    <h6>Category</h6>
+                                                </td>
+                                                <td>
+                                                    <h6>Importance</h6>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+
+                                            <tr ng-repeat="x in data.finalEntityTaggedList">
+                                                <td> "{{x.text}}"</td>
+                                                <td>
+                                                    <span class="label label-primary" style="    "> {{getCategory(x)}}</span>
+                                                </td>
+                                                <td style="width:80px; text-align: left;">
+                                                    <div class="progress">
+                                                        <div class="progress-bar " ng-class="{'progress-bar-info': (x.salience*100 >19) &&(x.salience*100 <80),'progress-bar-danger': (x.salience*100) < 20,
+                                                                             'progress-bar-success': (x.salience*100) > 79  }"
+                                                            role="progressbar" style="width: {{x.salience * 100}}" aria-valuenow="{{x.salience * 100}}"
+                                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </td>
+                                                <td>{{x.salience*100 | currency:""}}%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-block">
+                                        <h6> Devices </h6>
+                                        <hr>
+                                        <div ng-if="loading">
+
+                                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+
+                                        </div>
+                                        <table ng-if="data.specificationDto.relativeEntityList" class="table table-hover" style="border-top:none">
+                                            <tr ng-repeat="x in data.specificationDto.relativeEntityList">
+                                                <td> {{x.text}}</td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-block">
+                                        <h6> Features </h6>
+                                        <hr>
+                                        <div ng-if="loading">
+
+                                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+
+                                        </div>
+                                        <table ng-if="data.specificationDto.featureMap" class="table table-hover" style="border-top:none">
+                                            <tr ng-repeat="(key,x) in data.specificationDto.featureMap">
+                                                <td> {{key}}</td>
+
+                                                <td>{{x}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-block">
+                                        <h6> Relationships </h6>
+                                        <hr>
+                                        <div ng-if="loading">
+
+                                            <svg class="spinner pull-right" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                            </svg>
+
+                                        </div>
+                                        <table ng-if="data.specificationDto.specRelationshipDtoList" class="table table-hover" style="border-top:none">
+                                            <tr ng-repeat="x in data.specificationDto.specRelationshipDtoList">
+                                                <td> {{x.finalEntityTagDto.text}}</td>
+
+                                                <td>{{x.relationship}}</td>
+                                                <td>
+                                                    <div ng-repeat="(key,y) in x.featureMap">
+                                                        -{{key}} ({{y}}) <br>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </div>
     <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
