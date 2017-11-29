@@ -76,7 +76,7 @@ angular.module('nlu', ['hljs'])
             $rootScope.lines = "";
             $scope.details = [];
    
-            $http.post(nlu + "extract-entity", { text: $scope.sampleText, entity: $scope.mainEntity })
+            $http.post(nlu + "extract-entity", { text: $scope.sampleText})
                 .then((res) => {
                     console.log(res.data);
                     $scope.data = res.data.data[0];
