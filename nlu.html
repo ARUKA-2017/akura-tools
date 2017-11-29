@@ -278,7 +278,7 @@
                                 <div class="card">
 
                                     <div class="card-block">
-                                        <h6> Relationships </h6>
+                                        <h6> Devices Matched with Features (Consists Of)</h6>
                                         <hr>
                                         <div ng-if="loading">
 
@@ -291,7 +291,7 @@
                                             <tr ng-repeat="x in data.specificationDto.specRelationshipDtoList">
                                                 <td> {{x.finalEntityTagDto.text}}</td>
 
-                                                <td>{{x.relationship}}</td>
+                                                <!-- <td>{{x.relationship}}</td> -->
                                                 <td>
                                                     <div ng-repeat="(key,y) in x.featureMap">
                                                         -{{key}} ({{y}}) <br>
